@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f4efe3;
+  --secondary: #efe8d8;
+  --card: #fbf8f0;
+  --ink: #221a12;
+  --soft-ink: #5c5345;
+  --brass: #9a7b2e;
+  --brass-bright: #c2a14e;
+  --hairline: #dad0bc;
+  --oxblood: #9c3b2e;
+  --radius: 16px;
+}
+
+@layer base {
+  * {
+    border-color: var(--hairline);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--ink);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  ::selection {
+    background-color: var(--brass-bright);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  .small-caps {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+  }
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+/* Pendulum swing for the hero clock */
+@keyframes pendulum-swing {
+  0%,
+  100% {
+    transform: rotate(11deg);
+  }
+  50% {
+    transform: rotate(-11deg);
+  }
+}
+
+.animate-pendulum {
+  transform-origin: top center;
+  animation: pendulum-swing 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pendulum {
+    animation: none;
+    transform: rotate(0deg);
+  }
+}
